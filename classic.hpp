@@ -58,8 +58,8 @@ struct Classic {
 		for (size_t i = 0; i < grn.actualProteins.size(); ++i) {
 			for (size_t j = 0; j < grn.actualProteins.size(); ++j) {
 				grn.signatures[i][j] = {
-				    {exp(grn.params[0] * grn.signatures[i][j][0] - maxEnhance),
-				     exp(grn.params[0] * grn.signatures[i][j][1] - maxInhibit)}};
+          {exp(grn.params[0] *(grn.signatures[i][j][0] - maxEnhance)),
+           exp(grn.params[0] *(grn.signatures[i][j][1] - maxInhibit))}};
 			}
 		}
 	}
