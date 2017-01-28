@@ -56,8 +56,8 @@ struct RealCoords {
 		for (size_t i = 0; i < grn.actualProteins.size(); ++i) {
 			for (size_t j = 0; j < grn.actualProteins.size(); ++j) {
 				grn.signatures[i][j] = {
-				    {max(0.0, exp(grn.params[0] * grn.signatures[i][j][0] - maxEnhance)),
-				     max(0.0, exp(grn.params[0] * grn.signatures[i][j][1] - maxInhibit))}};
+				    {max(0.0, exp(grn.params[0] * grn.signatures[i][j][0] - 1.0)),
+				     max(0.0, exp(grn.params[0] * grn.signatures[i][j][1] - 1.0))}};
 			}
 		}
 	}
