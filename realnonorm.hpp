@@ -48,18 +48,18 @@ struct RealNoNorm {
 				auto& p0 = grn.actualProteins[i];
 				auto& p1 = grn.actualProteins[j];
 				grn.signatures[i][j] = {
-				    {static_cast<double>(1.0 - getShortestDistance(getEnh(p0), getId(p1))),
-				     static_cast<double>(1.0 - getShortestDistance(getInh(p0), getId(p1)))}};
-				if (grn.signatures[i][j][0] > maxEnhance) maxEnhance = grn.signatures[i][j][0];
-				if (grn.signatures[i][j][1] > maxInhibit) maxInhibit = grn.signatures[i][j][1];
+				    {static_cast<double>(0.0 - abs(getEnh(p0) - getId(p1))),
+				     static_cast<double>(0.0 - abs(getInh(p0) - getId(p1)))}};
+				// if (grn.signatures[i][j][0] > maxEnhance) maxEnhance = grn.signatures[i][j][0];
+				// if (grn.signatures[i][j][1] > maxInhibit) maxInhibit = grn.signatures[i][j][1];
 			}
 		}
 		// std::cerr << "maxEnh = " << maxEnhance << ", maxInh = " << maxInhibit << std::endl;
 		for (size_t i = 0; i < grn.actualProteins.size(); ++i) {
 			for (size_t j = 0; j < grn.actualProteins.size(); ++j) {
 				grn.signatures[i][j] = {
-				    {max(0.0, exp(grn.params[0] * grn.signatures[i][j][0] - 1.0)),
-				     max(0.0, exp(grn.params[0] * grn.signatures[i][j][1] - 1.0))}};
+          {exp(grn.params[0] * grn.signatures[i][j][0]),
+           exp(grn.params[0] * grn.signatures[i][j][1])}};
 			}
 		}
 	}
